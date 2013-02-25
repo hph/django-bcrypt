@@ -1,3 +1,5 @@
+#coding=utf8
+
 from __future__ import with_statement
 from contextlib import contextmanager
 
@@ -9,8 +11,11 @@ from django.test import TestCase
 from django.utils.functional import LazyObject
 
 from django_bcrypt.models import (bcrypt_check_password, bcrypt_set_password,
-                                  _check_password, _set_password,
                                   get_rounds, is_enabled, migrate_to_bcrypt)
+try:
+    from django_bcrypt.models import _check_password, _set_password
+except ImportError:
+    pass
 
 
 class CheckPasswordTest(TestCase):
